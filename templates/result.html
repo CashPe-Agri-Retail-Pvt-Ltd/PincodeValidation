@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PIN Code Validation Result</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+    <h1>PIN Code Validation Result</h1>
+    <p><span id="pincode-value">{{ pincode }}</span></p>
+    <button id="copy-button">Copy Address</button>
+    <br>
+    <br>    
+    <form action="/" method="GET">
+        <button type="submit">New Address</button>
+    </form>
+    
+    <script>
+        $(document).ready(function() {
+            // Add click event listener to the copy button
+            $("#copy-button").click(function() {
+                // Get the value of the pincode
+                var pincodeValue = $("#pincode-value").text();
+
+                // Create a temporary input element
+                var tempInput = $("<input>");
+
+                // Set the input value to the pincode
+                tempInput.val(pincodeValue);
+
+                // Append the input element to the body
+                $("body").append(tempInput);
+
+                // Copy the value from the input element to the clipboard
+                tempInput.select();
+                document.execCommand("copy");
+
+                // Remove the temporary input element
+                tempInput.remove();
+
+                // Alert the user that the content has been copied
+                alert("Pincode has been copied to the clipboard.");
+            });
+        });
+    </script>
+
+</body>
+</html>

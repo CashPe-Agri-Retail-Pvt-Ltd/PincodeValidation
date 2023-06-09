@@ -1,0 +1,249 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>PIN Code Validation</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Trigger AJAX requests to populate the dropdowns dynamically
+            $('#state').change(function() {
+                var selectedState = $(this).val();
+                $.ajax({
+                    url: '/districts',
+                    type: 'POST',
+                    data: {state: selectedState},
+                    success: function(response) {
+                        // Populate the district dropdown
+                        var districtDropdown = $('#district');
+                        districtDropdown.empty();
+                        districtDropdown.append($('<option></option>').attr('value', '').text('Select District'));  // Add a default "Select District" option
+                        $.each(response.districts, function(index, district) {
+                            districtDropdown.append($('<option></option>').attr('value', district).text(district));
+                        });
+                    }
+                });
+            });
+
+            $('#district').change(function() {
+                var selectedState = $('#state').val();
+                var selectedDistrict = $(this).val();
+                $.ajax({
+                    url: '/talukas',
+                    type: 'POST',
+                    data: {state: selectedState, district: selectedDistrict},
+                    success: function(response) {
+                        // Populate the taluka dropdown
+                        var talukaDropdown = $('#taluka');
+                        talukaDropdown.empty();
+                        talukaDropdown.append($('<option></option>').attr('value', '').text('Select Taluka'));  // Add a default "Select Taluka" option
+                        $.each(response.talukas, function(index, taluka) {
+                            talukaDropdown.append($('<option></option>').attr('value', taluka).text(taluka));
+                        });
+                    }
+                });
+            });
+
+            $('#taluka').change(function() {
+                var selectedState = $('#state').val();
+                var selectedDistrict = $('#district').val();
+                var selectedTaluka = $(this).val();
+                $.ajax({
+                    url: '/villages',
+                    type: 'POST',
+                    data: {state: selectedState, district: selectedDistrict, taluka: selectedTaluka},
+                    success: function(response) {
+                        // Populate the village dropdown
+                        var villageDropdown = $('#village');
+                        villageDropdown.empty();
+                        villageDropdown.append($('<option></option>').attr('value', '').text('Select Village'));  // Add a default "Select Village" option
+                        $.each(response.villages, function(index, village) {
+                            villageDropdown.append($('<option></option>').attr('value', village).text(village));
+                        });
+                    }
+                });
+            });
+
+            $('#village').change(function() {
+                var selectedState = $('#state').val();
+                var selectedDistrict = $('#district').val();
+                var selectedTaluka = $('#taluka').val();
+                var selectedVillage = $(this).val();
+                $.ajax({
+                    url: '/bos',
+                    type: 'POST',
+                    data: {state: selectedState, district: selectedDistrict, taluka: selectedTaluka, village: selectedVillage},
+                    success: function(response) {
+                        // Populate the B.O dropdown
+                        var boDropdown = $('#bo');
+                        boDropdown.empty();
+                        boDropdown.append($('<option></option>').attr('value', '').text('Select B.O'));  // Add a default "Select B.O" option
+                        $.each(response.bos, function(index, bo) {
+                            boDropdown.append($('<option></option>').attr('value', bo).text(bo));
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>PIN Code Validation Tool</h1>
+    <p>Enter the address details below to validate the PIN code.</p>
+    <h3> Search by Village</h3>
+    <form method="POST" action="/">
+        <label for="state">State:</label>
+        <select id="state" name="state">
+            {% for state in states %}
+                <option value="{{ state }}">{{ state }}</option>
+            {% endfor %}
+        </select>
+        <label for="district">District:</label>
+        <select id="district" name="district"></select>
+
+        <label for="taluka">Taluka:</label>
+        <select id="taluka" name="taluka"></select>
+
+        <label for="village">Village/Locality:</label>
+        <select id="village" name="village"></select>
+
+        <label for="bo">B.O (Branch Office):</label>
+        <select id="bo" name="bo"></select>
+        
+        <label for="landmark">Landmark:</label>
+        <input type="text" id="landmark" name="landmark">
+
+        <label for="co">C/O:</label>
+        <input type="text" id="co" name="co">
+        
+        <button type="submit">Fetch Address</button>
+    </form>
+    <br>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PIN Code Validation</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Trigger AJAX requests to populate the dropdowns dynamically
+            $('#state').change(function() {
+                var selectedState = $(this).val();
+                $.ajax({
+                    url: '/districts',
+                    type: 'POST',
+                    data: {state: selectedState},
+                    success: function(response) {
+                        // Populate the district dropdown
+                        var districtDropdown = $('#district');
+                        districtDropdown.empty();
+                        districtDropdown.append($('<option></option>').attr('value', '').text('Select District'));  // Add a default "Select District" option
+                        $.each(response.districts, function(index, district) {
+                            districtDropdown.append($('<option></option>').attr('value', district).text(district));
+                        });
+                    }
+                });
+            });
+
+            $('#district').change(function() {
+                var selectedState = $('#state').val();
+                var selectedDistrict = $(this).val();
+                $.ajax({
+                    url: '/talukas',
+                    type: 'POST',
+                    data: {state: selectedState, district: selectedDistrict},
+                    success: function(response) {
+                        // Populate the taluka dropdown
+                        var talukaDropdown = $('#taluka');
+                        talukaDropdown.empty();
+                        talukaDropdown.append($('<option></option>').attr('value', '').text('Select Taluka'));  // Add a default "Select Taluka" option
+                        $.each(response.talukas, function(index, taluka) {
+                            talukaDropdown.append($('<option></option>').attr('value', taluka).text(taluka));
+                        });
+                    }
+                });
+            });
+
+            $('#taluka').change(function() {
+                var selectedState = $('#state').val();
+                var selectedDistrict = $('#district').val();
+                var selectedTaluka = $(this).val();
+                $.ajax({
+                    url: '/bos',
+                    type: 'POST',
+                    data: {state: selectedState, district: selectedDistrict, taluka: selectedTaluka},
+                    success: function(response) {
+                        // Populate the B.O dropdown
+                        var boDropdown = $('#bo');
+                        boDropdown.empty();
+                        boDropdown.append($('<option></option>').attr('value', '').text('Select B.O'));  // Add a default "Select B.O" option
+                        $.each(response.bos, function(index, bo) {
+                            boDropdown.append($('<option></option>').attr('value', bo).text(bo));
+                        });
+                        
+                        // Reset the village dropdown
+                        var villageDropdown = $('#village');
+                        villageDropdown.empty();
+                        villageDropdown.append($('<option></option>').attr('value', '').text('Select Village'));  // Add a default "Select Village" option
+                    }
+                });
+            });
+
+            $('#bo').change(function() {
+                var selectedState = $('#state').val();
+                var selectedDistrict = $('#district').val();
+                var selectedTaluka = $('#taluka').val();
+                var selectedBo = $(this).val();
+                $.ajax({
+                    url: '/villages',
+                    type: 'POST',
+                    data: {state: selectedState, district: selectedDistrict, taluka: selectedTaluka, bo: selectedBo},
+                    success: function(response) {
+                        // Populate the village dropdown
+                        var villageDropdown = $('#village');
+                        villageDropdown.empty();
+                        villageDropdown.append($('<option></option>').attr('value', '').text('Select Village'));  // Add a default "Select Village" option
+                        $.each(response.villages, function(index, village) {
+                            villageDropdown.append($('<option></option>').attr('value', village).text(village));
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>PIN Code Validation Tool</h1>
+    <p>Enter the address details below to validate the PIN code.</p>
+    <h3>Search by Village</h3>
+    <form method="POST" action="/">
+        <label for="state">State:</label>
+        <select id="state" name="state">
+            {% for state in states %}
+                <option value="{{ state }}">{{ state }}</option>
+            {% endfor %}
+        </select>
+        <label for="district">District:</label>
+        <select id="district" name="district"></select>
+
+        <label for="taluka">Taluka:</label>
+        <select id="taluka" name="taluka"></select>
+
+        <label for="bo">B.O (Branch Office):</label>
+        <select id="bo" name="bo"></select>
+
+        <label for="village">Village/Locality:</label>
+        <select id="village" name="village"></select>
+
+        <label for="landmark">Landmark:</label>
+        <input type="text" id="landmark" name="landmark">
+
+        <label for="co">C/O:</label>
+        <input type="text" id="co" name="co">
+        
+        <button type="submit">Fetch Address</button>
+    </form>
+    <br>
+</body>
+</html>
