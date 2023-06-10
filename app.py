@@ -137,4 +137,4 @@ def get_pincode_co(selected_state, selected_district, selected_taluka, selected_
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
