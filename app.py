@@ -61,9 +61,9 @@ def get_villages():
     selected_state = request.form['state']
     selected_district = request.form['district']
     selected_taluka = request.form['taluka']
-    selected_bo = request.form['bo']
+    # selected_bo = request.form['bo']
     # Filter the pincode data to get villages for the selected state, district, and taluka
-    villages = pincode_data.loc[(pincode_data['StateName'] == selected_state) & (pincode_data['Districtname'] == selected_district) & (pincode_data['Sub-distname'] == selected_taluka) &(pincode_data['Officename']==selected_bo), 'Village/Locality'].unique()
+    villages = pincode_data.loc[(pincode_data['StateName'] == selected_state) & (pincode_data['Districtname'] == selected_district) & (pincode_data['Sub-distname'] == selected_taluka), 'Village/Locality'].unique()
     villages.sort()
     return {'villages': villages.tolist()}
 
@@ -72,9 +72,9 @@ def get_bos():
     selected_state = request.form['state']
     selected_district = request.form['district']
     selected_taluka = request.form['taluka']
-    # selected_village = request.form['village']
+    selected_village = request.form['village']
     # Filter the pincode data to get B.Os for the selected state, district, taluka, and village
-    bos = pincode_data.loc[(pincode_data['StateName'] == selected_state) & (pincode_data['Districtname'] == selected_district) & (pincode_data['Sub-distname'] == selected_taluka), 'Officename'].unique()
+    bos = pincode_data.loc[(pincode_data['StateName'] == selected_state) & (pincode_data['Districtname'] == selected_district) & (pincode_data['Sub-distname'] == selected_taluka) & (pincode_data['Village/Locality'] == selected_village), 'Officename'].unique()
     bos.sort()
     return {'bos': bos.tolist()}
 
